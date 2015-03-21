@@ -94,7 +94,8 @@ public class QueryPatientDetailServlet extends HttpServlet {
 			serviceclient = new ServiceClient(cc, null);
 			serviceclient.setOptions(opt);
 			result = serviceclient.sendReceive(payload);
-			List patients = parseResultFromDSS(result);
+			List<Patient> patients = parseResultFromDSS(result);
+			
 			request.setAttribute("patientList", patients);
 			request.setAttribute("patientNumber", patientNumber);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
