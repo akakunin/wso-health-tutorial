@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-	<display-name>wso2-health</display-name>
+	<display-name>WSO2HealthWebApplication</display-name>
 	<welcome-file-list>
-		<welcome-file>landingPage.html</welcome-file>
+		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>Search</servlet-name>
@@ -12,6 +12,10 @@
 		<servlet-name>Register</servlet-name>
 		<servlet-class>org.wso2.sample.RegisterPatientServlet</servlet-class>
 	</servlet>
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>org.wso2.sample.AuthenticationFilter</filter-class>
+	</filter>
 	<servlet-mapping>
 		<servlet-name>Search</servlet-name>
 		<url-pattern>/Search</url-pattern>
@@ -20,4 +24,8 @@
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/Register</url-pattern>
 	</servlet-mapping>
+    <filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

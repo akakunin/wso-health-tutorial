@@ -1,4 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
 <html>
 <head>
     <style>
@@ -80,12 +81,15 @@
         <td></td>
         <td>
             <form>
-                <li><a href="landingPage.html">Home</a></li>
+                <li><a href="landingPage.jsp">Home</a></li>
             </form>
         </td>
     </tr>
     </tbody>
 </table>
+</form>
+<form action="LogoutServlet" method="post">
+<input type="submit" value="Logout" >
 </form>
 </div>
 </body>

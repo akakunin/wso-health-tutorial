@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -85,12 +85,15 @@
         <td></td>
         <td>            
         <form>
-            <li><a href="landingPage.html">Home</a></li>
+            <li><a href="landingPage.jsp">Home</a></li>
         </form>
         </td>
     </tr>
     </tbody>
 </table>
+<form action="LogoutServlet" method="post">
+<input type="submit" value="Logout" >
+</form>
 </div>
 </body>
 </html>

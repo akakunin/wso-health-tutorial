@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <style>
@@ -6,6 +7,19 @@
     <title>WSO2 Health Portal Home</title>
 </head>
 <body>
+<%
+//allow access only if session exists
+String user = (String) session.getAttribute("user");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("user")) userName = (String) request.getSession(false).getAttribute("user");
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}
+%>
 <table>
     <tbody>
     <tr>
@@ -27,8 +41,11 @@
       <td></td>
       <td></td>
       <td >
-      <h3>Welcome to WSO2 Health Portal</h3>
+      <h3>Hi <%=userName %>, Login successful. Welcome to WSO2 Health Portal</h3>
+      <p>Your Session ID=<%=sessionID %></p>
+      <br/>
 	  </td>
+	  </tr>
       <tr>
           <td></td>
           <td></td>
@@ -46,6 +63,15 @@
                   <li><a href="addPatient.jsp">Register a new patient</a></li>
               </form>
           </td>
+      </tr>
+            <tr>
+          <td></td>
+          <td></td>
+          <td>          
+          	<form action="LogoutServlet" method="post">
+		  		<input type="submit" value="Logout" >
+		  	</form>
+		  </td>
       </tr>
       </tbody>
       </table>

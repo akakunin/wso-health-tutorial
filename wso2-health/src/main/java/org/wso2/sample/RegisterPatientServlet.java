@@ -127,7 +127,7 @@ public class RegisterPatientServlet extends HttpServlet{
                     "          <td></td>\n" +
                     "          <td>\n" +
                     "              <form>\n" +
-                    "                  <li><a href=\"landingPage.html\">Home</a></li>\n" +
+                    "                  <li><a href=\"landingPage.jsp\">Home</a></li>\n" +
                     "              </form>\n" +
                     "          </td>\n" +
                     "      </tr>\n" +
