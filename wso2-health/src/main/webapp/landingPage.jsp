@@ -51,7 +51,7 @@ for(Cookie cookie : cookies){
           <td></td>
           <td>
               <form>
-              <li><a href="getPatientDetails.jsp">Search for patient records</a></li>
+              <li><a href="getPatientDetails.jsp?user=<%=userName%>">Search for patient records</a></li>
               </form>
           </td>
       </tr>
@@ -60,7 +60,7 @@ for(Cookie cookie : cookies){
           <td></td>
           <td>
               <form>
-                  <li><a href="addPatient.jsp">Register a new patient</a></li>
+                  <li><a href="addPatient.jsp?user=<%=userName%>">Register a new patient</a></li>
               </form>
           </td>
       </tr>
