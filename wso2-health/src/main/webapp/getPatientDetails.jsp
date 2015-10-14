@@ -20,7 +20,7 @@
 <div style="opacity:0.5;position:absolute;right:50px;width:300px;height:500px;background-color:#40B3DF;"></div>
 <img src="./images/all-in-one.png" style="float:right" align="top" alt="" width="250" height="250">
 <div style="font-family:verdana;padding:20px;border-radius:100px;border:50px solid #EE872A;">
-    <div style="opacity:0.3;position:absolute;right:120px;width:400px;height:600px;background-color:#8AC007;"></div>
+
 <form action="Search">
 <table>
     <tbody>
