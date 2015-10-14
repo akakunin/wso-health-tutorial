@@ -93,6 +93,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>ru.emdev.wso2</groupId>
+			<artifactId>entitlement-filter</artifactId>
+			<version>4.5.3</version>
+		</dependency>
 	</dependencies>
 
 

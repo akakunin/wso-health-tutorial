@@ -95,7 +95,7 @@
 		    <!-- EntitlementFilter Settings -->
     <filter>
         <filter-name>EntitlementFilter</filter-name>
-        <filter-class>org.wso2.carbon.identity.entitlement.filter.EntitlementFilter</filter-class>
+        <filter-class>ru.emdev.wso2.carbon.identity.entitlement.filter.EntitlementFilter</filter-class>
 
         <!--Client Class that extends AbstractEntitlementServiceClient. Legal values are basicAuth, soap and thrift.
         Default is 'thrift'.-->
