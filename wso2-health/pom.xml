@@ -4,7 +4,7 @@
 	<groupId>ru.emdev</groupId>
 	<artifactId>wso2-health</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<name>wso2-health Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
@@ -43,12 +43,17 @@
 			<artifactId>axiom-impl</artifactId>
 			<version>1.2.14</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- WSO2 Dependencies -->
@@ -56,7 +61,37 @@
 			<groupId>org.wso2.carbon</groupId>
 			<artifactId>org.wso2.carbon.um.ws.api.stub</artifactId>
 			<version>4.2.2</version>
-			<scope>provided</scope>
+			<!--  TODO Understand how to use provided here -->
+			<exclusions>
+				<exclusion>
+					<artifactId>wsdl4j</artifactId>
+					<groupId>wsdl4j.wso2</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>neethi</artifactId>
+					<groupId>org.apache.neethi.wso2</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>XmlSchema</artifactId>
+					<groupId>org.apache.ws.commons.schema.wso2</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>axis2</artifactId>
+					<groupId>org.apache.axis2.wso2</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>axiom</artifactId>
+					<groupId>org.apache.ws.commons.axiom.wso2</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>axis2-client</artifactId>
+					<groupId>org.apache.axis2.wso2</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
