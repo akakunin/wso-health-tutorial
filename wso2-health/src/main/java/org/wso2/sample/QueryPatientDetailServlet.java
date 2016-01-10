@@ -25,7 +25,7 @@ import java.util.List;
 public class QueryPatientDetailServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private String dataServiceEP = "https://localhost:9445/services/WSO2HealthIT/";
+	private String dataServiceEP = "http://localhost:8283/services/WSO2HealthITProxy";
 	private String nameSpaceURL = "http://ws.wso2.org/dataservice/samples/health";
 
 	private OMElement createPayload(String patientNumber) {
