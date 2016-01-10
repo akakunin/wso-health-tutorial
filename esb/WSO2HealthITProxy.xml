@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="WSO2HealthITProxy"
+       transports="https http"
+       startOnLoad="true"
+       trace="disable">
+   <description/>
+   <target faultSequence="wso2HealthITFaultHandler">
+      <inSequence>
+         <property name="username"
+                   expression="$trp:X-Authorization"
+                   scope="axis2"
+                   type="STRING"/>
+         <entitlementService remoteServiceUrl="https://localhost:9444/services"
+                             remoteServiceUserName="admin"
+                             remoteServicePassword="enc:kuv2MubUUveMyv6GeHrXr9il59ajJIqUI4eoYHcgGKf/BBFOWn96NTjJQI+wYbWjKW6r79S7L7ZzgYeWx7DlGbff5X3pBN2Gh9yV0BHP1E93QtFqR7uTWi141Tr7V7ZwScwNqJbiNoV+vyLbsqKJE7T3nP8Ih9Y6omygbcLcHzg="
+                             callbackClass="org.wso2.carbon.identity.entitlement.mediator.callback.UTEntitlementCallbackHandler"
+                             client="basicAuth">
+            <onReject>
+               <log level="custom">
+                  <property name="FAULT" value="ON REJECT CALLED"/>
+               </log>
+               <makefault version="soap11">
+                  <code xmlns:soap11Env="http://schemas.xmlsoap.org/soap/envelope/"
+                        value="soap11Env:Server"/>
+                  <reason value="UNAUTHORIZED"/>
+                  <role/>
+                  <detail>XACML Authorization Failed</detail>
+               </makefault>
+               <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+               <header name="To" scope="default" action="remove"/>
+               <send/>
+            </onReject>
+            <onAccept>
+               <log level="custom">
+                  <property name="FAULT" value="ON ACCEPT CALLED"/>
+               </log>
+               <send>
+                  <endpoint>
+                     <address uri="http://localhost:9765/services/WSO2HealthIT/"/>
+                  </endpoint>
+               </send>
+            </onAccept>
+            <obligations/>
+            <advice/>
+         </entitlementService>
+      </inSequence>
+      <outSequence>
+         <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+                 name="wsse:Security"
+                 action="remove"/>
+         <send/>
+      </outSequence>
+   </target>
+   <publishWSDL uri="http://localhost:9765/services/WSO2HealthIT?wsdl"/>
+</proxy>

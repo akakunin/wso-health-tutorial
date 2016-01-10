@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="wso2HealthITFaultHandler">
+   <log level="custom">
+      <property name="FAULT" value="INTERNAL ERROR OCCURRED"/>
+   </log>
+   <property name="FAULT_ERROR_CODE"
+             value="//faultcode"
+             scope="default"
+             type="STRING"/>
+   <makefault version="soap11">
+      <code xmlns:soap11Env="http://schemas.xmlsoap.org/soap/envelope/"
+            value="soap11Env:Server"/>
+      <reason xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:ns3="http://org.apache.synapse/xsd"
+              expression="get-property('FAULT_ERROR_CODE')"/>
+      <role/>
+      <detail>DATABASE ERROR</detail>
+   </makefault>
+</sequence>
