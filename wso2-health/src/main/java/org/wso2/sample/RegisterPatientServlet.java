@@ -1,21 +1,25 @@
 package org.wso2.sample;
 
-import org.apache.axis2.client.ServiceClient;
-import org.apache.axis2.context.ConfigurationContext;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.OMFactory;
-import org.apache.axiom.om.OMAbstractFactory;
-import org.apache.axiom.om.OMNamespace;
-import org.apache.axis2.client.Options;
-import org.apache.axis2.addressing.EndpointReference;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import org.apache.commons.httpclient.Header;
+import org.apache.axiom.om.OMAbstractFactory;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.OMFactory;
+import org.apache.axiom.om.OMNamespace;
+import org.apache.axis2.addressing.EndpointReference;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.client.ServiceClient;
+import org.apache.axis2.context.ConfigurationContext;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 
 public class RegisterPatientServlet extends HttpServlet{
@@ -116,6 +120,12 @@ public class RegisterPatientServlet extends HttpServlet{
             Options opt = new Options();
             opt.setTo(new EndpointReference (DSSServerURL));
             opt.setAction("registerPatient");
+            
+            List<Header> headers = new ArrayList<Header>();
+			Header authHeader = new Header("X-Authorization", (String) request.getSession(false).getAttribute("user"));
+			headers.add(authHeader);
+			opt.setProperty(HTTPConstants.HTTP_HEADERS, headers);
+            
             serviceclient = new ServiceClient(cc, null);
             serviceclient.setOptions(opt);
             serviceclient.fireAndForget(payload);

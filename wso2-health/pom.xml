@@ -38,29 +38,62 @@
 			<version>1.4</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.ws.commons.axiom</groupId>
-			<artifactId>axiom-impl</artifactId>
+			<artifactId>axiom-api</artifactId>
 			<version>1.2.14</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
+					<artifactId>
+						geronimo-activation_1.1_spec
+					</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>apache-mime4j-core</artifactId>
+					<groupId>org.apache.james</groupId>
+				</exclusion>
+				<exclusion>
 					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jaxen</artifactId>
+					<groupId>jaxen</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
 		<!-- WSO2 Dependencies -->
 		<dependency>
 			<groupId>org.wso2.carbon</groupId>
 			<artifactId>org.wso2.carbon.um.ws.api.stub</artifactId>
 			<version>4.2.2</version>
+			<scope>provided</scope>   <!-- Provided only for AS 5.2.0 - for 5.3.0 it should be incuded -->
 			<!--  TODO Understand how to use provided here -->
 			<exclusions>
 				<exclusion>

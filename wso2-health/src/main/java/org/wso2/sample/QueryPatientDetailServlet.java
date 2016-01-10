@@ -1,13 +1,10 @@
 package org.wso2.sample;
 
-import org.apache.axiom.om.OMAbstractFactory;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.OMFactory;
-import org.apache.axiom.om.OMNamespace;
-import org.apache.axis2.addressing.EndpointReference;
-import org.apache.axis2.client.Options;
-import org.apache.axis2.client.ServiceClient;
-import org.apache.axis2.context.ConfigurationContext;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import org.apache.commons.httpclient.Header;
+import org.apache.axiom.om.OMAbstractFactory;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.OMFactory;
+import org.apache.axiom.om.OMNamespace;
+import org.apache.axis2.addressing.EndpointReference;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.client.ServiceClient;
+import org.apache.axis2.context.ConfigurationContext;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 public class QueryPatientDetailServlet extends HttpServlet {
 
@@ -91,6 +93,12 @@ public class QueryPatientDetailServlet extends HttpServlet {
 			Options opt = new Options();
 			opt.setTo(new EndpointReference(dataServiceEP));
 			opt.setAction("urn:patientDetailsByNumber");
+			
+            List<Header> headers = new ArrayList<Header>();
+			Header authHeader = new Header("X-Authorization", (String) request.getSession(false).getAttribute("user"));
+			headers.add(authHeader);
+			opt.setProperty(HTTPConstants.HTTP_HEADERS, headers);
+			
 			serviceclient = new ServiceClient(cc, null);
 			serviceclient.setOptions(opt);
 			result = serviceclient.sendReceive(payload);
